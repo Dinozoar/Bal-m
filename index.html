@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anılarımız</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
+    #login, #content { max-width: 500px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    #content { display: none; }
+    textarea { width: 100%; height: 200px; margin-top: 10px; }
+    button { background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+</style>
+</head>
+<body>
+
+<div id="login">
+    <h2>Giriş Yap</h2>
+    <label>Email:</label><br />
+    <input type="email" id="email" placeholder="E-posta adresiniz" /><br /><br />
+    <label>Şifre:</label><br />
+    <input type="password" id="password" placeholder="Şifre" /><br /><br />
+    <button onclick="login()">Giriş</button>
+    <p id="msg" style="color:red;"></p>
+</div>
+
+<div id="content">
+    <h2>Anılarımız</h2>
+    <textarea id="memory" placeholder="Buraya anılarınızı yazın..."></textarea><br /><br />
+    <button onclick="saveMemory()">Kaydet</button>
+    <p id="saveMsg" style="color:green;"></p>
+</div>
+
+<script>
+const allowedEmail = "gokhangungor592@gmail.com";
+const allowedPassword = "20.06.2024";
+
+function login() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const msg = document.getElementById('msg');
+    if(email === allowedEmail && password === allowedPassword) {
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        msg.textContent = "";
+        loadMemory();
+    } else {
+        msg.textContent = "E-posta veya şifre yanlış!";
+    }
+}
+
+function saveMemory() {
+    const memory = document.getElementById('memory').value;
+    localStorage.setItem('ourMemory', memory);
+    document.getElementById('saveMsg').textContent = "Anılar kaydedildi!";
+    setTimeout(() => { document.getElementById('saveMsg').textContent = ""; }, 3000);
+}
+
+function loadMemory() {
+    const memory = localStorage.getItem('ourMemory') || "";
+    document.getElementById('memory').value = memory;
+}
+</script>
+
+</body>
+</html>
