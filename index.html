@@ -1,90 +1,87 @@
-[08:50, 20.06.2025] Gökhan Güngör: <img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 1">
-<img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar2.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 2">
-<img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar3.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 3">
-<img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar4.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 4">
-[08:55, 20.06.2025] Gökhan Güngör: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<title>Anılarımız</title>
-<style>
-  body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
-  img { max-width: 100%; height: auto; display: block; margin-bottom: 5px; }
-  .entry { margin-bottom: 30px; }
-  #editArea { width: 100%; height: 300px; display: none; margin-top: 20px; }
-  #saveBtn { display: none; margin-top: 10px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bizim Anılarımız</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background: #fefefe;
+    }
+    #editor {
+      display: none;
+      margin-top: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+    }
+    img {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+    .entry {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
+  <h1>👩‍❤️‍👨 Anılarımız</h1>
 
-<h1>Anılarımız</h1>
+  <div id="loginForm">
+    <input type="email" id="email" placeholder="E-posta adresi"><br><br>
+    <input type="password" id="password" placeholder="Şifre"><br><br>
+    <button onclick="login()">Giriş Yap</button>
+  </div>
 
-<!-- Görüntüleme alanı -->
-<div id="contentDisplay"></div>
+  <div id="editor">
+    <h3>İçeriği Güncelle</h3>
+    <textarea id="contentInput"></textarea><br>
+    <button onclick="saveContent()">Kaydet</button>
+  </div>
 
-<!-- Giriş formu -->
-<div id="loginArea">
-  <input type="email" id="email" placeholder="Email" /><br/><br/>
-  <input type="password" id="password" placeholder="Şifre" /><br/><br/>
-  <button onclick="login()">Giriş Yap</button>
-</div>
+  <hr>
 
-<!-- Düzenleme alanı -->
-<textarea id="editArea"></textarea><br/>
-<button id="saveBtn" onclick="saveContent()">Kaydet</button>
+  <div id="contentDisplay"></div>
 
-<script>
-  // Doğru e-posta ve şifre
-  const correctEmail = "gokhangungor592@gmail.com";
-  const correctPassword = "20.06.2024";
+  <script>
+    const authorizedEmail = "gokhangungor592@gmail.com";
+    const password = "20.06.2024";
 
-  // İçerik saklama anahtarı (localStorage)
-  const storageKey = "anilarimizContent";
+    function login() {
+      const emailInput = document.getElementById("email").value;
+      const passwordInput = document.getElementById("password").value;
 
-  // Sayfa yüklendiğinde
-  window.onload = () => {
-    loadContent();
-  };
+      if (emailInput === authorizedEmail && passwordInput === password) {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("editor").style.display = "block";
 
-  // İçeriği yükle ve göster
-  function loadContent() {
-    const savedContent = localStorage.getItem(storageKey);
-    if(savedContent) {
+        const savedContent = localStorage.getItem("memories");
+        if (savedContent) {
+          document.getElementById("contentInput").value = savedContent;
+          document.getElementById("contentDisplay").innerHTML = savedContent;
+        }
+      } else {
+        alert("E-posta veya şifre hatalı!");
+      }
+    }
+
+    function saveContent() {
+      const content = document.getElementById("contentInput").value;
+      localStorage.setItem("memories", content);
+      document.getElementById("contentDisplay").innerHTML = content;
+    }
+
+    // Ziyaretçilere içerik göster
+    const savedContent = localStorage.getItem("memories");
+    if (savedContent) {
       document.getElementById("contentDisplay").innerHTML = savedContent;
-    } else {
-      document.getElementById("contentDisplay").innerHTML = "<p>Henüz anı yok.</p>";
     }
-  }
-
-  // Giriş fonksiyonu
-  function login() {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    if(email === correctEmail && password === correctPassword) {
-      // Giriş başarılı
-      alert("Giriş başarılı! Düzenleme alanı açılıyor.");
-
-      // Giriş formunu gizle
-      document.getElementById("loginArea").style.display = "none";
-
-      // Düzenleme alanını göster ve mevcut içeriği getir
-      document.getElementById("editArea").style.display = "block";
-      document.getElementById("saveBtn").style.display = "inline-block";
-      document.getElementById("editArea").value = localStorage.getItem(storageKey) || "";
-    } else {
-      alert("Email veya şifre yanlış!");
-    }
-  }
-
-  // Kaydet fonksiyonu
-  function saveContent() {
-    const content = document.getElementById("editArea").value;
-    localStorage.setItem(storageKey, content);
-    document.getElementById("contentDisplay").innerHTML = content;
-    alert("Kaydedildi!");
-  }
-</script>
-
+  </script>
 </body>
 </html>
