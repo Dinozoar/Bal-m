@@ -1,87 +1,90 @@
-<!DOCTYPE html>
+[09:19, 20.06.2025] Gökhan Güngör: <div class="entry">
+  <img src="https://raw.githubusercontent.com/gokhangungor592/anilarimiz/main/ebrar.jpg" alt="Ebrar Fotoğraf 1" />
+  <p>Bu bizim ilk fotoğrafımız. Harika bir gündü!</p>
+</div>
+
+<div class="entry">
+  <img src="https://raw.githubusercontent.com/gokhangungor592/anilarimiz/main/ebrar2.jpg" alt="Ebrar Fotoğraf 2" />
+  <p>Burada çok güldük 😊</p>
+</div>
+
+<div class="entry">
+  <img src="https://raw.githubusercontent.com/gokhangungor592/anilarimiz/main/ebrar3.jpg" alt="Ebrar Fotoğraf 3" />
+  <p>Hatırlıyor musun bu anı? ❤️</p>
+</div>
+
+<div class="entry">
+  <img src="https://raw.githubusercontent.com/gokhangungor592/anilarimiz/main/ebrar4.jpg" alt="Ebrar Fotoğraf 4" />
+  <p>Birlikte daha nice güzel günlere...</p>
+</div>
+[09:28, 20.06.2025] Gökhan Güngör: https://raw.githubusercontent.com/gokhangungor592/anilarimiz/main/ebrar.jpg
+[09:29, 20.06.2025] Gökhan Güngör: https://raw.githubusercontent.com/gokhangungor592/anilarimiz/main/ebrar.jpg
+[09:48, 20.06.2025] Gökhan Güngör: <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bizim Anılarımız</title>
+  <title>Balım</title>
   <style>
     body {
-      font-family: sans-serif;
-      margin: 20px;
-      background: #fefefe;
+      font-family: Arial, sans-serif;
+      background-color: #fff7f0;
+      color: #333;
+      margin: 0;
+      padding: 20px;
     }
-    #editor {
-      display: none;
-      margin-top: 20px;
+
+    h1 {
+      text-align: center;
+      color: #c94f7c;
+      margin-bottom: 40px;
     }
-    textarea {
-      width: 100%;
-      height: 200px;
-      font-family: monospace;
-    }
-    img {
-      max-width: 100%;
-      margin-top: 10px;
-    }
+
     .entry {
-      margin-bottom: 30px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      padding: 10px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .entry img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .entry p {
+      font-size: 16px;
+      color: #444;
     }
   </style>
 </head>
 <body>
-  <h1>👩‍❤️‍👨 Anılarımız</h1>
 
-  <div id="loginForm">
-    <input type="email" id="email" placeholder="E-posta adresi"><br><br>
-    <input type="password" id="password" placeholder="Şifre"><br><br>
-    <button onclick="login()">Giriş Yap</button>
+  <h1>Balım</h1>
+
+  <div class="entry">
+    <img src="https://raw.githubusercontent.com/Dinozor/Bal-m/main/ebrar.jpg" alt="Ebrar Fotoğraf 1" />
+    <p>İlk anımız 💛</p>
   </div>
 
-  <div id="editor">
-    <h3>İçeriği Güncelle</h3>
-    <textarea id="contentInput"></textarea><br>
-    <button onclick="saveContent()">Kaydet</button>
+  <div class="entry">
+    <img src="https://raw.githubusercontent.com/Dinozor/Bal-m/main/ebrar1.jpg" alt="Ebrar Fotoğraf 2" />
+    <p>İkinci kare, ikinci gülümseme.</p>
   </div>
 
-  <hr>
+  <div class="entry">
+    <img src="https://raw.githubusercontent.com/Dinozor/Bal-m/main/ebrar2.jpg" alt="Ebrar Fotoğraf 3" />
+    <p>Birlikte olduğumuz her an çok güzel.</p>
+  </div>
 
-  <div id="contentDisplay"></div>
+  <div class="entry">
+    <img src="https://raw.githubusercontent.com/Dinozor/Bal-m/main/ebrar3.jpg" alt="Ebrar Fotoğraf 4" />
+    <p>Hep böyle kalalım 💖</p>
+  </div>
 
-  <script>
-    const authorizedEmail = "gokhangungor592@gmail.com";
-    const password = "20.06.2024";
-
-    function login() {
-      const emailInput = document.getElementById("email").value;
-      const passwordInput = document.getElementById("password").value;
-
-      if (emailInput === authorizedEmail && passwordInput === password) {
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("editor").style.display = "block";
-
-        const savedContent = localStorage.getItem("memories");
-        if (savedContent) {
-          document.getElementById("contentInput").value = savedContent;
-          document.getElementById("contentDisplay").innerHTML = savedContent;
-        }
-      } else {
-        alert("E-posta veya şifre hatalı!");
-      }
-    }
-
-    function saveContent() {
-      const content = document.getElementById("contentInput").value;
-      localStorage.setItem("memories", content);
-      document.getElementById("contentDisplay").innerHTML = content;
-    }
-
-    // Ziyaretçilere içerik göster
-    const savedContent = localStorage.getItem("memories");
-    if (savedContent) {
-      document.getElementById("contentDisplay").innerHTML = savedContent;
-    }
-  </script>
 </body>
 </html>
