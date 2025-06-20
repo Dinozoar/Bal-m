@@ -1,66 +1,89 @@
-<!DOCTYPE html>
+[08:50, 20.06.2025] Gökhan Güngör: <img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 1">
+<img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar2.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 2">
+<img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar3.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 3">
+<img src="https://github.com/gokhangungor592/anilarimiz/blob/main/ebrar4.jpg?raw=true" style="max-width:100%;" alt="Ebrar Fotoğraf 4">
+[08:55, 20.06.2025] Gökhan Güngör: <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Anılarımız</title>
 <style>
-    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
-    #login, #content { max-width: 500px; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    #content { display: none; }
-    textarea { width: 100%; height: 200px; margin-top: 10px; }
-    button { background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-    button:hover { background-color: #0056b3; }
+  body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+  img { max-width: 100%; height: auto; display: block; margin-bottom: 5px; }
+  .entry { margin-bottom: 30px; }
+  #editArea { width: 100%; height: 300px; display: none; margin-top: 20px; }
+  #saveBtn { display: none; margin-top: 10px; }
 </style>
 </head>
 <body>
 
-<div id="login">
-    <h2>Giriş Yap</h2>
-    <label>Email:</label><br />
-    <input type="email" id="email" placeholder="E-posta adresiniz" /><br /><br />
-    <label>Şifre:</label><br />
-    <input type="password" id="password" placeholder="Şifre" /><br /><br />
-    <button onclick="login()">Giriş</button>
-    <p id="msg" style="color:red;"></p>
+<h1>Anılarımız</h1>
+
+<!-- Görüntüleme alanı -->
+<div id="contentDisplay"></div>
+
+<!-- Giriş formu -->
+<div id="loginArea">
+  <input type="email" id="email" placeholder="Email" /><br/><br/>
+  <input type="password" id="password" placeholder="Şifre" /><br/><br/>
+  <button onclick="login()">Giriş Yap</button>
 </div>
 
-<div id="content">
-    <h2>Anılarımız</h2>
-    <textarea id="memory" placeholder="Buraya anılarınızı yazın..."></textarea><br /><br />
-    <button onclick="saveMemory()">Kaydet</button>
-    <p id="saveMsg" style="color:green;"></p>
-</div>
+<!-- Düzenleme alanı -->
+<textarea id="editArea"></textarea><br/>
+<button id="saveBtn" onclick="saveContent()">Kaydet</button>
 
 <script>
-const allowedEmail = "gokhangungor592@gmail.com";
-const allowedPassword = "20.06.2024";
+  // Doğru e-posta ve şifre
+  const correctEmail = "gokhangungor592@gmail.com";
+  const correctPassword = "20.06.2024";
 
-function login() {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const msg = document.getElementById('msg');
-    if(email === allowedEmail && password === allowedPassword) {
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-        msg.textContent = "";
-        loadMemory();
+  // İçerik saklama anahtarı (localStorage)
+  const storageKey = "anilarimizContent";
+
+  // Sayfa yüklendiğinde
+  window.onload = () => {
+    loadContent();
+  };
+
+  // İçeriği yükle ve göster
+  function loadContent() {
+    const savedContent = localStorage.getItem(storageKey);
+    if(savedContent) {
+      document.getElementById("contentDisplay").innerHTML = savedContent;
     } else {
-        msg.textContent = "E-posta veya şifre yanlış!";
+      document.getElementById("contentDisplay").innerHTML = "<p>Henüz anı yok.</p>";
     }
-}
+  }
 
-function saveMemory() {
-    const memory = document.getElementById('memory').value;
-    localStorage.setItem('ourMemory', memory);
-    document.getElementById('saveMsg').textContent = "Anılar kaydedildi!";
-    setTimeout(() => { document.getElementById('saveMsg').textContent = ""; }, 3000);
-}
+  // Giriş fonksiyonu
+  function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-function loadMemory() {
-    const memory = localStorage.getItem('ourMemory') || "";
-    document.getElementById('memory').value = memory;
-}
+    if(email === correctEmail && password === correctPassword) {
+      // Giriş başarılı
+      alert("Giriş başarılı! Düzenleme alanı açılıyor.");
+
+      // Giriş formunu gizle
+      document.getElementById("loginArea").style.display = "none";
+
+      // Düzenleme alanını göster ve mevcut içeriği getir
+      document.getElementById("editArea").style.display = "block";
+      document.getElementById("saveBtn").style.display = "inline-block";
+      document.getElementById("editArea").value = localStorage.getItem(storageKey) || "";
+    } else {
+      alert("Email veya şifre yanlış!");
+    }
+  }
+
+  // Kaydet fonksiyonu
+  function saveContent() {
+    const content = document.getElementById("editArea").value;
+    localStorage.setItem(storageKey, content);
+    document.getElementById("contentDisplay").innerHTML = content;
+    alert("Kaydedildi!");
+  }
 </script>
 
 </body>
