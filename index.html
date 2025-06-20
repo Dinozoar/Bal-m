@@ -10,38 +10,70 @@
       max-width: 700px;
       margin: 20px auto;
       padding: 10px;
-      background: #f9f9f9;
+      background-image: url('https://i.ibb.co/4sJkT5W/papatya.jpg'); /* Dışarıdan alınan papatya resmi */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      scroll-behavior: smooth;
+    }
+    .block {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 40px;
     }
     img {
       max-width: 100%;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       border-radius: 8px;
     }
     p {
       margin-top: 0;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-size: 16px;
       color: #333;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #f4d03f;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #f7c600;
     }
   </style>
 </head>
 <body>
-  <h1>Anılarımız</h1>
+  <h1 style="text-align: center;">Anılarımız</h1>
 
-  <!-- Fotoğraf 1 -->
-  <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar.jpg" alt="Ebrar Fotoğraf 1" />
-  <p>Pembiş çoraplı elbiseli bebek sevgilim daha o zamanlardan prensesim.</p>
+  <div id="b1" class="block">
+    <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar.jpg" alt="Ebrar Fotoğraf 1" />
+    <p>Pembiş çoraplı elbiseli bebek sevgilim daha o zamanlardan prensesim.</p>
+    <button onclick="document.getElementById('b2').scrollIntoView({behavior: 'smooth'})">Devam Et</button>
+  </div>
 
-  <!-- Fotoğraf 2 -->
-  <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar2.jpg" alt="Ebrar Fotoğraf 2" />
-  <p>Seni ilk kez görüşüm hemen de aşık etmiştin kendine.</p>
+  <div id="b2" class="block">
+    <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar2.jpg" alt="Ebrar Fotoğraf 2" />
+    <p>Seni ilk kez görüşüm hemen de aşık etmiştin kendine.</p>
+    <button onclick="document.getElementById('b3').scrollIntoView({behavior: 'smooth'})">Devam Et</button>
+  </div>
 
-  <!-- Fotoğraf 3 -->
-  <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar3.jpg" alt="Ebrar Fotoğraf 3" />
-  <p>Bebek sevgilim büyük ama gözümde küçücük.</p>
+  <div id="b3" class="block">
+    <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar3.jpg" alt="Ebrar Fotoğraf 3" />
+    <p>Bebek sevgilim ama büyük gözümde küçücük.</p>
+    <button onclick="document.getElementById('b4').scrollIntoView({behavior: 'smooth'})">Devam Et</button>
+  </div>
 
-  <!-- Fotoğraf 4 -->
-  <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar4.jpg" alt="Ebrar Fotoğraf 4" />
-  <p>Güzeller güzeli sevgilim yine aşık ettin be kadın tamam ya.</p>
+  <div id="b4" class="block">
+    <img src="https://raw.githubusercontent.com/Dinozoar/balim/main/ebrar4.jpg" alt="Ebrar Fotoğraf 4" />
+    <p>Güzeller güzeli sevgilim yine aşık ettin be kadın tamam ya.</p>
+  </div>
 </body>
 </html>
